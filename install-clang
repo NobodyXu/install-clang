@@ -145,7 +145,7 @@ while getopts "Ab::j:lms:ucCh?" opt ; do
             elif [ "$OPTARG" == "1" ]; then
                 perform_stage0=0
                 perform_stage1=1
-                perform_stage2=-
+                perform_stage2=0
             elif [ "$OPTARG" == "2" ]; then
                 perform_stage0=0
                 perform_stage1=0
