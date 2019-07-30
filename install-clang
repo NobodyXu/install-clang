@@ -86,6 +86,7 @@ usage()
     echo "    -A         enables assertions in LLVM libraries"
     echo "    -b         build type (Release, Debug, RelWithDebInfo) [default: ${buildtype}]"
     echo "    -c         skip cloning repositories, assume they are in place"
+    echo "    -cl        only cloning repositories"
     echo "    -C         clean up after build by deleting the LLVM/clang source/build directories"
     echo "    -h|-?      display this help"
     echo "    -j <n>     build with <n> threads in parallel [default: ${parallelism}]"
@@ -154,7 +155,11 @@ while getopts "Ab::j:lms:ucCh?" opt ; do
                 exit 1
             fi
             ;;
-
+        cl)
+            perform_stage0=0
+            perform_stage1=0
+            perform_stage2=0
+            ;;
         u)
             mode=update
             ;;
