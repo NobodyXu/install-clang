@@ -92,7 +92,7 @@ usage()
     echo "    -j <n>     build with <n> threads in parallel [default: ${parallelism}]"
     echo "    -m         use git/master instead of preconfigured versions"
     echo "    -s <stage> begin build from <stage> [0, 1, 2]"
-    echo "    -O build only the specific <stage> [0, 1, 2] (overrid '-s')"
+    echo "    -O <stage> build only the specific <stage> [0, 1, 2] (overrid '-s')"
     echo "    -S         build, and link against, shared libraries (instead of static libraries)"
     echo "    -u         update an existing build in <prefix> instead of installing new"
     echo ""
