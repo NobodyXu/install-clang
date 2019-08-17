@@ -500,8 +500,6 @@ for stage in 0 1 2; do
              .. && \
        cmake --build . -- -j $parallelism
        cmake --build . --target install -- -j $parallelism
-       make -j $parallelism && \
-       make install \
      )
 
     if [ "$?" != "0" ] ; then
