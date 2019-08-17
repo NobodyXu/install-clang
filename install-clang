@@ -95,13 +95,14 @@ usage()
     echo "    -O <stage> build only the specific <stage> [0, 1, 2] (overrid '-s')"
     echo "    -S         build, and link against, shared libraries (instead of static libraries)"
     echo "    -u         update an existing build in <prefix> instead of installing new"
+    echo "    -G <build> use build system like ninja instead of make"
     echo ""
     echo "Environment variables:"
     echo "    CC         path to the C compiler for bootstrapping"
     echo "    CXX        path to the C++ compiler for bootstrapping"
 }
 
-while getopts "Ab::j:lms:ucCh?DO:" opt ; do
+while getopts "Ab::j:lms:ucCh?DO:G:" opt ; do
     case "$opt" in
         c)
             perform_clone=0
@@ -176,6 +177,10 @@ while getopts "Ab::j:lms:ucCh?DO:" opt ; do
             build_shared_libs=on
             ;;
 
+        G)
+	    build_system="$OPTARG"
+	    addl_cmake="${addl_cmake} -G${build_system}"
+	    ;;
     esac
 done
 
@@ -493,6 +498,8 @@ for stage in 0 1 2; do
              ${addl_cmake} \
              `st CMAKE` \
              .. && \
+       cmake --build . -- -j $parallelism
+       cmake --build . --target install -- -j $parallelism
        make -j $parallelism && \
        make install \
      )
